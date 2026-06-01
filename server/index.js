@@ -364,6 +364,8 @@ setInterval(() => {
     soil_p: soilP,
     soil_k: soilK,
     battery: batteryLevel,
+    air_temp: parseFloat((24.2 + (Math.random() * 0.4 - 0.2)).toFixed(1)),
+    air_humidity: parseFloat((55.8 + (Math.random() * 1.0 - 0.5)).toFixed(1)),
     timestamp: Date.now()
   };
 

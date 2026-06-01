@@ -66,6 +66,10 @@ export const useRadarWebSocket = (url: string = 'ws://localhost:8080') => {
   const [soilP, setSoilP] = useState(0);
   const [soilK, setSoilK] = useState(0);
   const [battery, setBattery] = useState(0);
+  
+  // DHT11 Air parameters
+  const [airTemp, setAirTemp] = useState(0.0);
+  const [airHumidity, setAirHumidity] = useState(0.0);
 
   const [alerts, setAlerts] = useState<{ status: 'SAFE' | 'WARNING' | 'DANGER', distance: number, angle: number, direction: string }>({
     status: 'SAFE',
@@ -144,6 +148,10 @@ export const useRadarWebSocket = (url: string = 'ws://localhost:8080') => {
           if (data.soil_p !== undefined) setSoilP(data.soil_p);
           if (data.soil_k !== undefined) setSoilK(data.soil_k);
           if (data.battery !== undefined) setBattery(data.battery);
+          
+          // Sync DHT11 Air parameters (if sent by ESP32)
+          if ((data as any).air_temp !== undefined) setAirTemp((data as any).air_temp);
+          if ((data as any).air_humidity !== undefined) setAirHumidity((data as any).air_humidity);
 
           // Log terminal buffering
           if (data.log && data.log !== lastLogRef.current) {
@@ -344,6 +352,10 @@ export const useRadarWebSocket = (url: string = 'ws://localhost:8080') => {
     soilP,
     soilK,
     battery,
+
+    // DHT11 air metrics
+    airTemp,
+    airHumidity,
 
     // Operations commands
     sendControlCommand,
