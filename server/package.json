@@ -1,0 +1,16 @@
+{
+  "name": "soil-rover-server",
+  "version": "1.0.0",
+  "description": "WebSocket and API Server for Soil Rover Dashboard",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "sqlite3": "^6.0.1",
+    "ws": "^8.16.0"
+  }
+}
